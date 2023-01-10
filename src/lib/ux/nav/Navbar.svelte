@@ -36,13 +36,13 @@
 				</svg>
 			</label>
 		</div>
-		<div class="hidden navbar-start {!isHomePage || switchNavbarStyle ? 'lg:flex' : ''}">
+		<div class="navbar-start {isHomePage ? 'hidden' : ''}">
 			<a data-sveltekit-preload-data="hover" href="/" class="btn btn-ghost normal-case text-xl">
 				Home
 			</a>
 		</div>
 
-		<div class="navbar-start flex {!isHomePage || switchNavbarStyle ? 'lg:hidden' : ''}">
+		<div class="navbar-start flex {!isHomePage ? 'lg:hidden' : ''}">
 			<a
 				data-sveltekit-preload-data="hover"
 				href="/"
@@ -59,16 +59,6 @@
 				<li>
 					<a
 						data-sveltekit-preload-data="hover"
-						href="/about"
-						class="uppercase"
-						class:active={segment === 'about'}
-					>
-						about
-					</a>
-				</li>
-				<li>
-					<a
-						data-sveltekit-preload-data="hover"
 						href="/posts"
 						class="uppercase"
 						class:active={segment === 'posts'}
@@ -78,7 +68,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="navbar-end gap-4">
+		<div class="navbar-end justify-end gap-4">
 			<ThemeToggle />
 		</div>
 	</nav>

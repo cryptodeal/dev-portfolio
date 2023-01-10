@@ -2,9 +2,7 @@
 	export let bulletItems: (string | (string | string[])[])[] | string[] = [];
 </script>
 
-<ul
-	class="font-extralight list-disc list-inside text-left w-3/4 inline-block items-center sm:w-1/2 md:w-3/4"
->
+<ul class="font-extralight list-disc list-inside inline-block items-center">
 	{#each bulletItems as itemText}
 		{#if Array.isArray(itemText)}
 			<li>

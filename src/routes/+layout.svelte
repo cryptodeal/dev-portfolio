@@ -1,20 +1,8 @@
-<!--
-  <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	export const load: Load = async ({ url }) => ({
-		props: {
-			path: url.pathname
-		}
-	});
-</script>
--->
 <script lang="ts">
 	import '../app.css';
 	import { onMount } from 'svelte';
 	import Twitter from '~icons/akar-icons/twitter-fill';
 	import Github from '~icons/akar-icons/github-fill';
-	import Email from '~icons/akar-icons/envelope';
-
 	// import { webVitals } from '$lib/webvitals';
 	import { afterNavigate } from '$app/navigation';
 	import { themeChange } from 'theme-change';
@@ -98,23 +86,20 @@
 		style="scroll-behavior: smooth; scroll-padding-top: 5rem;"
 	>
 		<Nav {segment} {closeDrawer} {drawerContentScrollY} />
-		<div class="p-6 pb-16">
+		<div class="p-6 pb-24">
 			<slot />
 		</div>
 
-		<footer class="fixed bottom-0 footer items-center p-2 2xl:p-4 bg-base-300 text-base-content">
+		<footer class="fixed bottom-0 footer gap-y-1 items-center p-2 bg-base-300 text-base-content">
 			<div class="items-center grid-flow-col">
 				<p>Copyright © 2023 - All right reserved by James Deal</p>
 			</div>
-			<div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+			<div class="grid-flow-col justify-self-center gap-4 md:place-self-center md:justify-self-end">
 				<a href="https://twitter.com/jamespdeal" rel="nofollow noopener noreferrer" target="_blank">
 					<Twitter class="w-6 h-6 fill-current" />
 				</a>
 				<a href="https://github.com/cryptodeal" rel="nofollow noopener noreferrer" target="_blank">
 					<Github class="w-6 h-6 fill-current" />
-				</a>
-				<a href="https://github.com/cryptodeal" rel="nofollow noopener noreferrer" target="_blank">
-					<Email class="w-6 h-6 fill-current" />
 				</a>
 			</div>
 		</footer>

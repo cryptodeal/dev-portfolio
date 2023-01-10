@@ -25,7 +25,7 @@
 				{#if i === paths.length - 1}
 					<path
 						class:done
-						in:draw={{ delay: i * 200, duration: 500 }}
+						in:draw={{ delay: i * 500, duration: 500 }}
 						d={path}
 						on:introend={() => (done = true)}
 						shape-rendering="auto"
@@ -33,7 +33,7 @@
 				{/if}
 				<path
 					class:done
-					in:draw={{ delay: i * 200, duration: 500 }}
+					in:draw={{ delay: i * 500, duration: 500 }}
 					d={path}
 					shape-rendering="auto"
 				/>

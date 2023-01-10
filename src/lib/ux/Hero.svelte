@@ -1,5 +1,5 @@
 <div
-	class="-mx-6 from-primary to-secondary text-primary-content -mt-[5.5rem] grid place-items-center items-end bg-gradient-to-br pt-30"
+	class="-mx-6 from-primary to-secondary text-primary-content -mt-[5.5rem] grid place-items-center items-end bg-gradient-to-br pt-40"
 >
 	<div
 		class="hero-content col-start-1 row-start-1 w-full max-w-3xl flex-col justify-between gap-10 pb-40 lg:flex-row lg:items-end lg:gap-0 xl:gap-20"
@@ -15,9 +15,6 @@
 				</h2>
 			</div>
 			<div class="mt-4 flex flex-1 justify-center space-x-2 lg:mt-6 lg:justify-start">
-				<a href="/about" class="btn btn-ghost btn-active lg:btn-lg normal-case">
-					<span class="inline">About</span>
-				</a>
 				<a href="/posts" class="btn lg:btn-lg normal-case">Posts</a>
 			</div>
 		</div>

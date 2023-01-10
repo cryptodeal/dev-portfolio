@@ -11,18 +11,6 @@
 		<a
 			data-sveltekit-preload-data="hover"
 			on:click={closeDrawer}
-			href="/about"
-			class="uppercase"
-			class:active={segment === 'about' ? true : false}
-		>
-			about
-		</a>
-	</li>
-
-	<li>
-		<a
-			data-sveltekit-preload-data="hover"
-			on:click={closeDrawer}
 			href="/posts"
 			class="uppercase"
 			class:active={segment === 'posts' ? true : false}
