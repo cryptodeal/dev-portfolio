@@ -18,16 +18,19 @@
 </script>
 
 <div class="mb-10">
-	<Hero />
+	<svelte:component this={Hero} />
 </div>
 
-<h1 class="font-title text-4xl text-center mt-64 m-24 font-extrabold sm:text-5xl lg:text-7xl">
+<h1
+	id="about"
+	class="font-title text-4xl text-center mt-64 m-24 font-extrabold sm:text-5xl lg:text-7xl"
+>
 	About
 </h1>
 
 <div class="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
 	<div
-		class="card h-fit md:max-w-400px justify-self-center md:justify-self-end bg-accent-focus text-accent-content"
+		class="card h-fit md:max-w-400px justify-self-center md:justify-self-end bg-accent text-accent-content"
 	>
 		<div class="card-body">
 			<h2 class="card-title">{titles.edu}</h2>
@@ -38,7 +41,7 @@
 	</div>
 
 	<div
-		class="card h-fit md:max-w-400px justify-self-center md:justify-self-start bg-accent-focus text-accent-content"
+		class="card h-fit md:max-w-400px justify-self-center md:justify-self-start bg-accent text-accent-content"
 	>
 		<div class="card-body">
 			<h2 class="card-title">Skills</h2>
@@ -91,7 +94,7 @@
 	</div>
 
 	<div
-		class="card h-fit md:max-w-400px justify-self-center md:justify-self-end bg-accent-focus text-accent-content"
+		class="card h-fit md:max-w-400px justify-self-center md:justify-self-end bg-accent text-accent-content"
 	>
 		<div class="card-body">
 			<h2 class="card-title">Experience</h2>

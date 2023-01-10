@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ThemeToggle from '$lib/ux/nav/ThemeToggle.svelte';
+	import Github from '~icons/akar-icons/github-fill';
 	import { page } from '$app/stores';
 	import Signature from '../Signature.svelte';
 	export let segment: string, closeDrawer: () => void, drawerContentScrollY: number;
@@ -68,7 +69,10 @@
 				</li>
 			</ul>
 		</div>
-		<div class="navbar-end justify-end gap-4">
+		<div class="navbar-end justify-end gap-4 mr-2">
+			<a href="https://github.com/cryptodeal" rel="nofollow noopener noreferrer" target="_blank">
+				<Github class="w-6 h-6 fill-current" />
+			</a>
 			<ThemeToggle />
 		</div>
 	</nav>
