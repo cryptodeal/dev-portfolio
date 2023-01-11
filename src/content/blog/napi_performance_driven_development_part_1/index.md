@@ -3,6 +3,7 @@ postTitle: 'Performance Driven Development of Cross Runtime Node-API Native Addo
 focusKeyphrase: 'cross runtime node native addon performance research'
 seoMetaDescription: 'A performance/benchmarking driven approach to writing Node Native Addons when targetting multiple Javascript runtimes.'
 featuredImage: 'napi_performance.jpeg'
+datePublished: '2023-01-11T01:33:39+0000'
 featuredImageAlt: 'Depiction of the bidirectional flow of data from Javascript to C++ and vice versa.'
 ogImage: 'napi_performance.jpeg'
 ogSquareImage: 'napi_performance.jpeg'
@@ -133,5 +134,3 @@ The above test was run both with an implementation that used `Napi::ObjectWrap` 
 - `Napi::External` implementation: `~0.66 seconds`
 
 Unsurprisingly, removing the uneccessary usage of `Napi::ObjectWrap` from the implementation resulted in a fairly significant boost to performance.
-
-Stay tuned for the next post in this series where we'll go into a bit more detail with regards to some of the other, less obvious optimizations we've discovered and are making use of in the (WIP) shumai NAPI bindings.
