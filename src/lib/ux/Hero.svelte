@@ -1,7 +1,3 @@
-<script lang="ts">
-	import { scrollto } from 'svelte-scrollto-element';
-</script>
-
 <div
 	class="-mx-6 from-primary to-secondary text-primary-content -mt-[5.5rem] grid place-items-center items-end bg-gradient-to-br pt-40"
 >
