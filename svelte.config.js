@@ -5,14 +5,14 @@ import mdsvexConfig from './mdsvex.config.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  extensions: ['.svelte', '.md', '.svelte.md'],
+	extensions: ['.svelte', '.md', '.svelte.md'],
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
 	preprocess: [
 		mdsvex(mdsvexConfig),
 		preprocess({
-			postcss: true,
-		}),
+			postcss: true
+		})
 	],
 	kit: {
 		adapter: adapter()

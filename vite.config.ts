@@ -1,5 +1,5 @@
 import Icons from 'unplugin-icons/vite';
-import { imagetools } from 'vite-imagetools'
+import { imagetools } from 'vite-imagetools';
 import { sveltekit } from '@sveltejs/kit/vite';
 import type { UserConfig } from 'vite';
 

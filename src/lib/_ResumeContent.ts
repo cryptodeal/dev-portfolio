@@ -21,10 +21,10 @@ const content = {
 			subtitle: 'Languages',
 			list: [`Javascript`, `Typescript`, `Golang`, `C++`, `Zig`]
 		},
-    db: {
-      subtitle: 'Databases',
-      list: [`SQL`, `NoSQL`, `Graph`]
-    },
+		db: {
+			subtitle: 'Databases',
+			list: [`SQL`, `NoSQL`, `Graph`]
+		},
 		libs: {
 			subtitle: 'Frameworks/Libraries',
 			list: [
@@ -34,7 +34,7 @@ const content = {
 				[`TailwindCSS`, `https://tailwindcss.com/`],
 				[`WindiCSS`, `https://windicss.org/`],
 				[`Rollup`, `https://rollupjs.org`],
-				[`Vite`, `https://vitejs.dev/`],
+				[`Vite`, `https://vitejs.dev/`]
 			]
 		},
 		graphics: {

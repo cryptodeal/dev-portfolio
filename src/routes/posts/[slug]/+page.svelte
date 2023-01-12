@@ -48,3 +48,9 @@
 	<h4>By: James Deal</h4>
 	<svelte:component this={page} />
 </div>
+
+<style>
+	.prose :where(code):not(:where([class~='not-prose'] *)) {
+		border-radius: var(--rounded-badge);
+	}
+</style>

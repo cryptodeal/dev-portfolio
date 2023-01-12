@@ -21,7 +21,7 @@ export async function lowResolutionPlaceholder({ source }) {
 				optimiseScans: true,
 				chromaSubsampling: '4:2:0',
 				trellisQuantisation: true,
-				quantisationTable: 2,
+				quantisationTable: 2
 			})
 			.toBuffer({ resolveWithObject: false });
 		return `data:image/jpeg;base64,${(await buffer).toString('base64')}`;

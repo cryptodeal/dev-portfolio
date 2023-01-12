@@ -22,7 +22,7 @@ async function generateImageMeta(source) {
 	const metaPromises = [
 		metadata({ source }),
 		dominantColour({ source }),
-		lowResolutionPlaceholder({ source }),
+		lowResolutionPlaceholder({ source })
 	];
 	const [metadataResult, dominantColourObject, placeholder] = await Promise.all(metaPromises);
 	const { format, width, height } = metadataResult;
@@ -50,7 +50,7 @@ function getPosts(location) {
 				featuredImageAlt,
 				ogImage,
 				ogSquareImage,
-				twitterImage,
+				twitterImage
 			});
 		}
 	});
@@ -88,14 +88,14 @@ const main = async () => {
 						width < outputSizes[0] ? `${width};` : ''
 					}${outputSizes.filter((outputSizesElement) => outputSizesElement <= width).join(';')}&${
 						formatsElement === 'auto' ? format : formatsElement
-					}&srcset';`,
+					}&srcset';`
 			);
 			const sources = `[\n${formats
 				.map(
 					(formatsElement) =>
 						`    { srcset: ${`srcset${formatsElement}`}, type: ${
 							formatsElement === 'auto' ? `'image/${format}'` : `'image/${formatsElement}'`
-						} },`,
+						} },`
 				)
 				.join('\n')}\n  ]`;
 			const result = `import meta from '${source}?width=${Math.min(maxWidth, width)}&metadata';
