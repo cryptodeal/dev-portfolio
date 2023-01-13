@@ -38,7 +38,12 @@
 			</label>
 		</div>
 		<div class="navbar-start {isHomePage ? 'hidden' : ''}">
-			<a data-sveltekit-preload-data="hover" href="/" class="btn btn-ghost normal-case text-xl">
+			<a
+				data-sveltekit-preload-data="hover"
+				aria-label="Home"
+				href="/"
+				class="btn btn-ghost normal-case text-xl"
+			>
 				Home
 			</a>
 		</div>
@@ -46,6 +51,7 @@
 		<div class="navbar-start flex {!isHomePage ? 'lg:hidden' : ''}">
 			<a
 				data-sveltekit-preload-data="hover"
+				aria-label="Home"
 				href="/"
 				on:click={closeDrawer}
 				class="btn btn-ghost normal-case text-xl"

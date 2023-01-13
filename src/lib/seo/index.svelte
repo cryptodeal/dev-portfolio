@@ -34,15 +34,15 @@
 		height: 630,
 		caption: 'Home page'
 	};
-	export let ogImage = {
+	export let ogImage: { url: string; alt: string } | null = {
 		url: defaultFeaturedImage,
 		alt: defaultAlt
 	};
-	export let ogSquareImage = {
+	export let ogSquareImage: { url: string; alt: string } | null = {
 		url: defaultFeaturedImage,
 		alt: defaultAlt
 	};
-	export let twitterImage = {
+	export let twitterImage: { url: string; alt: string } | null = {
 		url: defaultFeaturedImage,
 		alt: defaultAlt
 	};

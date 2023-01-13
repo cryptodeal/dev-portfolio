@@ -8,9 +8,10 @@
 	const { post, page, imageData } = data;
 
 	type PostData = {
-		datePublished: any;
+		datePublished: string;
 		featuredImage: any;
 		featuredImageAlt: any;
+		lastUpdated: string;
 		ogImage: any;
 		ogSquareImage: any;
 		postTitle: any;
@@ -23,11 +24,63 @@
 	const {
 		datePublished,
 		featuredImageAlt,
+		lastUpdated,
 		postTitle: title,
 		seoMetaDescription: metadescription,
 		slug
 	} = <PostData>post;
+	const { ogImage, ogSquareImage, src: featuredImage, twitterImage } = imageData;
+
+	const breadcrumbs = [
+		{
+			name: 'Home',
+			slug: ''
+		},
+		{
+			name: title,
+			slug
+		}
+	];
+	const featuredImageObject = {
+		url: featuredImage,
+		alt: featuredImageAlt,
+		width: 672,
+		height: 448,
+		caption: title
+	};
+	const ogImageObject = ogImage
+		? {
+				url: featuredImage,
+				alt: featuredImageAlt
+		  }
+		: null;
+	const ogSquareImageObject = ogSquareImage
+		? {
+				url: featuredImage,
+				alt: featuredImageAlt
+		  }
+		: null;
+	const twitterImageObject = twitterImage
+		? {
+				url: featuredImage,
+				alt: featuredImageAlt
+		  }
+		: null;
 </script>
+
+<SEO
+	article={true}
+	{breadcrumbs}
+	{slug}
+	{title}
+	{datePublished}
+	{lastUpdated}
+	{metadescription}
+	featuredImage={featuredImageObject}
+	ogImage={ogImageObject}
+	ogSquareImage={ogSquareImageObject}
+	twitterImage={twitterImageObject}
+/>
 
 <div class="mx-auto mb-4 max-w-4xl px-2 sm:px-2 lg:px-4 lg:max-w-9/12">
 	<div class="w-full inline-flex gap-y-2 flex-wrap justify-between items-center">

@@ -95,10 +95,20 @@
 				<p>Copyright © 2023 - All right reserved by James Deal</p>
 			</div>
 			<div class="grid-flow-col justify-self-center gap-4 md:place-self-center md:justify-self-end">
-				<a href="https://twitter.com/jamespdeal" rel="nofollow noopener noreferrer" target="_blank">
+				<a
+					href="https://twitter.com/jamespdeal"
+					aria-label="Twitter"
+					rel="nofollow noopener noreferrer"
+					target="_blank"
+				>
 					<Twitter class="w-6 h-6 fill-current" />
 				</a>
-				<a href="https://github.com/cryptodeal" rel="nofollow noopener noreferrer" target="_blank">
+				<a
+					href="https://github.com/cryptodeal"
+					rel="nofollow noopener noreferrer"
+					aria-label="Twitter"
+					target="_blank"
+				>
 					<Github class="w-6 h-6 fill-current" />
 				</a>
 			</div>

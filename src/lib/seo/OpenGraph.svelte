@@ -6,8 +6,8 @@
 	export let lastUpdated: string;
 	export let facebookAuthorPage = '';
 	export let facebookPage = '';
-	export let image: ImageObject | undefined;
-	export let squareImage: ImageObject | undefined;
+	export let image: ImageObject | null;
+	export let squareImage: ImageObject | null;
 	export let metadescription: string;
 	export let ogLanguage: string;
 	export let pageTitle: string;

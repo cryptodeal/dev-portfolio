@@ -3,7 +3,7 @@
 	export let article = false;
 	export let author: string;
 	export let twitterUsername: string | undefined;
-	export let image: ImageObject | undefined;
+	export let image: ImageObject | null;
 	export let timeToRead = 0;
 	/*
 	 * When there is an equivalent og tag present, Twitter takes that so check OpenGraph before
