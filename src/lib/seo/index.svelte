@@ -1,13 +1,11 @@
 <script lang="ts">
-	import defaultFeaturedImage from '$lib/assets/default/home.jpg';
-	import defaultOgImage from '$lib/assets/default/home-open-graph.jpg';
-	import defaultOgSquareImage from '$lib/assets/default/home-open-graph-square.jpg';
-	import defaultTwitterImage from '$lib/assets/default/home-twitter.jpg';
 	import { VERTICAL_LINE_ENTITY } from '$lib/_const';
 	import website from '$lib/_site';
 	import OpenGraph from './OpenGraph.svelte';
 	// import SchemaOrg from './SchemaOrg.svelte';
 	import Twitter from './Twitter.svelte';
+
+	const defaultFeaturedImage = 'https://jamesdeal.dev/og';
 	const {
 		author,
 		ogLanguage,
@@ -27,26 +25,25 @@
 	export let slug: string;
 	export let timeToRead = 0;
 	export let title: string;
-	const defaultAlt =
-		'picture of a person with long, curly hair, wearing a red had taking a picture with an analogue camera';
+	const defaultAlt = 'Dynamically generated shareable image for jamesdeal.dev';
 	// imported props with fallback defaults
 	export let featuredImage = {
 		url: defaultFeaturedImage,
 		alt: defaultAlt,
-		width: 672,
-		height: 448,
+		width: 1200,
+		height: 630,
 		caption: 'Home page'
 	};
 	export let ogImage = {
-		url: defaultOgImage,
+		url: defaultFeaturedImage,
 		alt: defaultAlt
 	};
 	export let ogSquareImage = {
-		url: defaultOgSquareImage,
+		url: defaultFeaturedImage,
 		alt: defaultAlt
 	};
 	export let twitterImage = {
-		url: defaultTwitterImage,
+		url: defaultFeaturedImage,
 		alt: defaultAlt
 	};
 	const pageTitle = `${siteTitle} ${VERTICAL_LINE_ENTITY} ${title}`;
