@@ -3,13 +3,32 @@
 	import defaultOgImage from '$lib/assets/default/home-open-graph.jpg';
 	import defaultOgSquareImage from '$lib/assets/default/home-open-graph-square.jpg';
 	import defaultTwitterImage from '$lib/assets/default/home-twitter.jpg';
-	import site from '$lib/_site';
-
-	export let isArticle = false;
+	import { VERTICAL_LINE_ENTITY } from '$lib/_const';
+	import website from '$lib/_site';
+	import OpenGraph from './OpenGraph.svelte';
+	// import SchemaOrg from './SchemaOrg.svelte';
+	import Twitter from './Twitter.svelte';
+	const {
+		author,
+		ogLanguage,
+		siteLanguage,
+		siteShortTitle,
+		siteTitle,
+		siteUrl,
+		githubPage,
+		twitterUsername
+	} = website;
+	export let article = false;
+	export let breadcrumbs: { name: string; slug: string }[] = [];
 	export let entityMeta = null;
-	export let metaDescription: string;
+	export let lastUpdated: string;
+	export let datePublished: string;
+	export let metadescription: string;
+	export let slug: string;
+	export let timeToRead = 0;
 	export let title: string;
-
+	const defaultAlt =
+		'picture of a person with long, curly hair, wearing a red had taking a picture with an analogue camera';
 	// imported props with fallback defaults
 	export let featuredImage = {
 		url: defaultFeaturedImage,
@@ -30,25 +49,57 @@
 		url: defaultTwitterImage,
 		alt: defaultAlt
 	};
-
-	const {
-		author,
+	const pageTitle = `${siteTitle} ${VERTICAL_LINE_ENTITY} ${title}`;
+	const url = `${siteUrl}/${slug}`;
+	const openGraphProps = {
+		article,
+		datePublished,
+		lastUpdated,
+		image: ogImage,
+		squareImage: ogSquareImage,
+		metadescription,
 		ogLanguage,
-		siteLanguage,
-		siteShortTitle,
+		pageTitle,
 		siteTitle,
+		url,
+		...(article ? { datePublished, lastUpdated } : {})
+	};
+	const schemaOrgProps = {
+		article,
+		author,
+		breadcrumbs,
+		datePublished,
+		lastUpdated,
+		entityMeta,
+		featuredImage,
+		metadescription,
+		siteLanguage,
+		siteTitle,
+		siteTitleAlt: siteShortTitle,
 		siteUrl,
+		title: pageTitle,
+		url,
 		githubPage,
 		twitterUsername
-	} = site;
+	};
+	const twitterProps = {
+		article,
+		author,
+		twitterUsername,
+		image: twitterImage,
+		timeToRead
+	};
 </script>
 
 <svelte:head>
 	<title>{pageTitle}</title>
-	<meta name="description" content={metaDescription} />
+	<meta name="description" content={metadescription} />
 	<meta
 		name="robots"
 		content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
 	/>
 	<link rel="canonical" href={url} />
 </svelte:head>
+<Twitter {...twitterProps} />
+<OpenGraph {...openGraphProps} />
+<!--<SchemaOrg {...schemaOrgProps} />-->

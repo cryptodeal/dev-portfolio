@@ -10,7 +10,7 @@
 					JamesDeal.dev
 				</h1>
 				<h2 class="font-title text-lg sm:text-2xl lg:text-3xl">
-					Personal musings, learnings, design notes, and project walkthroughs from your friendly
+					Personal musings, learnings, design notes, and walkthroughs from your friendly
 					neighborhood Full Stack Developer.
 				</h2>
 			</div>

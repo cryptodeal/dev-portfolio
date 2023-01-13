@@ -8,6 +8,8 @@
 	import Dates from '$lib/ux/Dates.svelte';
 	import BulletedList from '$lib/ux/BulletedList.svelte';
 	import Pill from '$lib/ux/Pill.svelte';
+	import website from '$lib/_site';
+
 	const isSigVisible = <Writable<boolean>>getContext('isSigVisible');
 	onMount(() => {
 		isSigVisible.set(true);
@@ -15,6 +17,57 @@
 	onDestroy(() => {
 		isSigVisible.set(false);
 	});
+
+	const { author, siteUrl } = website;
+	let title = 'Home';
+	const breadcrumbs = [
+		{
+			name: 'Home',
+			slug: ''
+		}
+	];
+	let metadescription =
+		'James Deal | Developer Portfolio - personal musings, learnings, design notes, and walkthroughs from your friendly neighborhood Full Stack Developer.';
+	const featuredImageAlt =
+		'picture of a person with long, curly hair, wearing a red had taking a picture with an analogue camera';
+	const featuredImage = {
+		// url: featuredImageSrc,
+		alt: featuredImageAlt,
+		width: 672,
+		height: 448,
+		caption: 'Home page'
+	};
+	const ogImage = {
+		// url: ogImageSrc,
+		alt: featuredImageAlt
+	};
+	const ogSquareImage = {
+		// url: ogSquareImageSrc,
+		alt: featuredImageAlt
+	};
+	const twitterImage = {
+		// url: twitterImageSrc,
+		alt: featuredImageAlt
+	};
+	const entityMeta = {
+		url: `${siteUrl}/`,
+		faviconWidth: 512,
+		faviconHeight: 512,
+		caption: author
+	};
+	const seoProps = {
+		title,
+		slug: '',
+		entityMeta,
+		datePublished: '2021-07-07T14:19:33.000+0100',
+		lastUpdated: '2021-07-07T14:19:33.000+0100',
+		breadcrumbs,
+		metadescription,
+		featuredImage,
+		ogImage,
+		ogSquareImage,
+		twitterImage
+	};
 </script>
 
 <div class="mb-10">
