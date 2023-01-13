@@ -15,7 +15,7 @@
 	};
 </script>
 
-<div class="toast toast-top toast-end">
+<div class="toast toast-top toast-end mt-16">
 	{#each $notifications as { type, message, remove }}
 		<div
 			in:fly={{ x: 200, duration: 1000 }}

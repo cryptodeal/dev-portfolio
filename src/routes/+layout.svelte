@@ -106,7 +106,7 @@
 				<a
 					href="https://github.com/cryptodeal"
 					rel="nofollow noopener noreferrer"
-					aria-label="Twitter"
+					aria-label="Github"
 					target="_blank"
 				>
 					<Github class="w-6 h-6 fill-current" />

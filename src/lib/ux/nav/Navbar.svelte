@@ -76,7 +76,12 @@
 			</ul>
 		</div>
 		<div class="navbar-end justify-end gap-4 mr-2">
-			<a href="https://github.com/cryptodeal" rel="nofollow noopener noreferrer" target="_blank">
+			<a
+				href="https://github.com/cryptodeal"
+				aria-label="Github"
+				rel="nofollow noopener noreferrer"
+				target="_blank"
+			>
 				<Github class="w-6 h-6 fill-current" />
 			</a>
 			<ThemeToggle />
