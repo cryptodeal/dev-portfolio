@@ -2,8 +2,6 @@
 
 declare module 'theme-change';
 
-declare module '@georgedoescode/generative-utils';
-
 declare module 'nice-color-palettes/100';
 
 declare module '*.svelte' {

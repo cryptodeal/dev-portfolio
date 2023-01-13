@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { random } from '@georgedoescode/generative-utils';
+	import { random } from '$lib/utils';
 	import { getTwoColors } from '.';
 	import { scale } from 'svelte/transition';
 	import { backOut } from 'svelte/easing';

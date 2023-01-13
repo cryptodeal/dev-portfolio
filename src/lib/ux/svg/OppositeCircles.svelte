@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { random } from '@georgedoescode/generative-utils';
+	import { random } from '$lib/utils';
 	import { SVG, type G } from '@svgdotjs/svg.js';
 
 	export let size: number;

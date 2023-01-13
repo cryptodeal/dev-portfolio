@@ -15,7 +15,6 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@georgedoescode/generative-utils": "^1.0.38",
 		"@iconify/json": "^2.2.5",
 		"@playwright/test": "^1.29.2",
 		"@resvg/resvg-js": "^2.2.0",

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { random } from '@georgedoescode/generative-utils';
+	import { random } from '$lib/utils';
 	import colors from 'nice-color-palettes/100';
 	export let message = 'JamesDeal.dev';
 	import Grid from './svg/Grid.svelte';

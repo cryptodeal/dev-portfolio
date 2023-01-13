@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { random } from '@georgedoescode/generative-utils';
+	import { random } from '$lib/utils';
 
 	export let size: number;
 	export let foreground: string;
