@@ -14,7 +14,12 @@
 	}
 </script>
 
-<button class="btn" on:click={toggleTheme} data-toggle-theme="night,winter">
+<button
+	class="btn"
+	aria-label="Theme Toggle"
+	on:click={toggleTheme}
+	data-toggle-theme="night,winter"
+>
 	<label
 		for="theme-toggle"
 		class="swap w-full h-full swap-rotate {theme === 'winter' ? 'swap-active' : ''}"
