@@ -20,7 +20,7 @@
 	} = website;
 	export let article = false;
 	export let breadcrumbs: { name: string; slug: string }[] = [];
-	export let entityMeta = null;
+	export let entityMeta: any = null;
 	export let lastUpdated: string;
 	export let datePublished: string;
 	export let metadescription: string;

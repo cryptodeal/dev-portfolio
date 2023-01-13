@@ -2,6 +2,8 @@
 	import BannerImage from '$lib/ux/blog/BannerImage.svelte';
 	import ShareTwitter from '$lib/ux/socials/ShareTwitter.svelte';
 	import type { PageData } from './$types';
+	import SEO from '$lib/seo/index.svelte';
+
 	export let data: PageData;
 	const { post, page, imageData } = data;
 

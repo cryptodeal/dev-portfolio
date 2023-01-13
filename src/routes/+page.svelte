@@ -3,6 +3,7 @@
 	import Hero from '$lib/ux/Hero.svelte';
 	import type { Writable } from 'svelte/store';
 	import { onMount, onDestroy } from 'svelte';
+	import SEO from '$lib/seo/index.svelte';
 	import { titles, content } from '$lib/_ResumeContent';
 	import Subtitle from '$lib/ux/Subtitle.svelte';
 	import Dates from '$lib/ux/Dates.svelte';
@@ -18,6 +19,7 @@
 		isSigVisible.set(false);
 	});
 
+	const featuredImageSrc = 'https://www.jamesdeal.dev/og';
 	const { author, siteUrl } = website;
 	let title = 'Home';
 	const breadcrumbs = [
@@ -28,25 +30,24 @@
 	];
 	let metadescription =
 		'James Deal | Developer Portfolio - personal musings, learnings, design notes, and walkthroughs from your friendly neighborhood Full Stack Developer.';
-	const featuredImageAlt =
-		'picture of a person with long, curly hair, wearing a red had taking a picture with an analogue camera';
+	const featuredImageAlt = 'Dynamically generated shareable image for jamesdeal.dev';
 	const featuredImage = {
-		// url: featuredImageSrc,
+		url: featuredImageSrc,
 		alt: featuredImageAlt,
-		width: 672,
-		height: 448,
+		width: 1200,
+		height: 630,
 		caption: 'Home page'
 	};
 	const ogImage = {
-		// url: ogImageSrc,
+		url: featuredImageSrc,
 		alt: featuredImageAlt
 	};
 	const ogSquareImage = {
-		// url: ogSquareImageSrc,
+		url: featuredImageSrc,
 		alt: featuredImageAlt
 	};
 	const twitterImage = {
-		// url: twitterImageSrc,
+		url: featuredImageSrc,
 		alt: featuredImageAlt
 	};
 	const entityMeta = {
@@ -59,8 +60,8 @@
 		title,
 		slug: '',
 		entityMeta,
-		datePublished: '2021-07-07T14:19:33.000+0100',
-		lastUpdated: '2021-07-07T14:19:33.000+0100',
+		datePublished: '2023-01-10T14:19:33.000+0100',
+		lastUpdated: '2023-01-13T14:19:33.000+0100',
 		breadcrumbs,
 		metadescription,
 		featuredImage,
@@ -69,6 +70,8 @@
 		twitterImage
 	};
 </script>
+
+<SEO {...seoProps} />
 
 <div class="mb-10">
 	<svelte:component this={Hero} />

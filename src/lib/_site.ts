@@ -10,7 +10,7 @@ const website = {
 	author: 'James Deal',
 	ogLanguage: 'en_US',
 	siteLanguage: 'en-US',
-	siteTitle: 'James Deal | Dev Portfolio',
+	siteTitle: 'James Deal',
 	siteShortTitle: 'JamesDeal.dev',
 	description: 'James Deal | Developer portfolio, musings, write ups, and other assorted thoughts.',
 	siteUrl: PUBLIC_SITE_URL,
