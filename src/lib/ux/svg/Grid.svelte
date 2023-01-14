@@ -12,6 +12,8 @@
 	import QuarterCircle from './QuarterCircle.svelte';
 
 	export let colorPalette: string[];
+	export let width = 1200;
+	export let height = 630;
 
 	const shapes = [Circle, OppositeCircles, Dots, Cross, QuarterCircle, DiagonalSquare, HalfSquare];
 
@@ -26,7 +28,7 @@
 
 	const squareSize = 100;
 	const numCols = random(4, 8, true);
-	const numRows = (numCols / 630) * 1200;
+	const numRows = Math.floor((numCols / height) * width);
 
 	// Random multiplier (2 or 3 squares)
 	const multiplier = random([2, 3]);

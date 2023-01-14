@@ -6,12 +6,12 @@ import NotoSans from '$lib/NotoSans-Regular.ttf';
 
 import type { RequestHandler } from './$types';
 
-const height = 630;
-const width = 1200;
-
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = async ({ url }) => {
+	const message = url.searchParams.get('message') ?? undefined,
+		width = url.searchParams.get('width') ?? undefined,
+		height = url.searchParams.get('height') ?? undefined;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const result = (Card as any).render();
+	const result = (Card as any).render({ message, width, height });
 	const element = toReactNode(`${result.html}<style>${result.css.code}</style>`);
 
 	const svg = await satori(element, {
@@ -22,20 +22,18 @@ export const GET: RequestHandler = async () => {
 				style: 'normal'
 			}
 		],
-		height,
-		width
+		height: Number(height),
+		width: Number(width)
 	});
 
 	const resvg = new Resvg(svg, {
 		fitTo: {
 			mode: 'width',
-			value: width
+			value: Number(width)
 		}
 	});
 
-	const image = resvg.render();
-
-	return new Response(image.asPng(), {
+	return new Response(resvg.render().asPng(), {
 		headers: {
 			'content-type': 'image/png'
 		}

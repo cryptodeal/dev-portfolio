@@ -15,11 +15,11 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@iconify/json": "^2.2.5",
+		"@iconify/json": "^2.2.6",
 		"@playwright/test": "^1.29.2",
 		"@resvg/resvg-js": "^2.2.0",
-		"@sveltejs/adapter-vercel": "^1.0.1",
-		"@sveltejs/kit": "^1.0.11",
+		"@sveltejs/adapter-vercel": "^1.0.2",
+		"@sveltejs/kit": "^1.1.0",
 		"@svgdotjs/svg.js": "^3.1.2",
 		"@tailwindcss/typography": "^0.5.9",
 		"@types/color": "^3.0.3",
@@ -36,7 +36,7 @@
 		"eslint-plugin-svelte3": "^4.0.0",
 		"front-matter": "^4.0.2",
 		"mdsvex": "^0.10.6",
-		"nice-color-palettes": "3.0.0",
+		"nice-color-palettes": "^3.0.0",
 		"object-hash": "^3.0.0",
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.2",
