@@ -10,6 +10,7 @@ const website = {
 	author: 'James Deal',
 	ogLanguage: 'en_US',
 	siteLanguage: 'en-US',
+	entity: undefined,
 	siteTitle: 'James Deal',
 	siteShortTitle: 'JamesDeal.dev',
 	description: 'James Deal | Developer portfolio, musings, write ups, and other assorted thoughts.',

@@ -12,7 +12,7 @@
 <Grid {colorPalette} {width} {height} />
 
 <div style="position: absolute; top: 0; left: 0; background-color: transparent; z-index: 100;">
-	<div style="background-color: #eeeee4; width: auto; height: auto; padding: 2rem 3rem;">
+	<div style="background-color: #eeeee4; width: auto; height: auto; padding: 1rem 1.5rem;">
 		{message}
 	</div>
 </div>

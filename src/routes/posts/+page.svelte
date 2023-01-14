@@ -6,7 +6,6 @@
 	export let data: PageData;
 	const { posts } = data;
 
-	const featuredImageSrc = 'https://www.jamesdeal.dev/og';
 	const { author, siteUrl } = website;
 	let title = 'Posts';
 	const breadcrumbs = [
@@ -19,22 +18,22 @@
 		'James Deal | Developer Portfolio - list of articles and blog posts written by James Deal for jamesdeal.dev.';
 	const featuredImageAlt = 'Dynamically generated shareable image for jamesdeal.dev';
 	const featuredImage = {
-		url: featuredImageSrc,
+		url: 'https://www.jamesdeal.dev/og?msg=JamesDeal.dev%20%7C%20Posts&w=672&h=448',
 		alt: featuredImageAlt,
-		width: 1200,
-		height: 630,
+		width: 672,
+		height: 448,
 		caption: 'Posts'
 	};
 	const ogImage = {
-		url: featuredImageSrc,
+		url: 'https://www.jamesdeal.dev/og?msg=JamesDeal.dev%20%7C%20Posts&w=1200&h=627',
 		alt: featuredImageAlt
 	};
 	const ogSquareImage = {
-		url: featuredImageSrc,
+		url: 'https://www.jamesdeal.dev/og?msg=JamesDeal.dev%20%7C%20Posts&w=400&h=400',
 		alt: featuredImageAlt
 	};
 	const twitterImage = {
-		url: featuredImageSrc,
+		url: 'https://www.jamesdeal.dev/og?msg=JamesDeal.dev%20%7C%20Posts&w=800&h=418',
 		alt: featuredImageAlt
 	};
 	const entityMeta = {

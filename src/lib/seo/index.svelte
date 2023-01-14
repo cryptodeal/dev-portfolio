@@ -2,12 +2,13 @@
 	import { VERTICAL_LINE_ENTITY } from '$lib/_const';
 	import website from '$lib/_site';
 	import OpenGraph from './OpenGraph.svelte';
-	// import SchemaOrg from './SchemaOrg.svelte';
+	import SchemaOrg from './SchemaOrg.svelte';
 	import Twitter from './Twitter.svelte';
 
 	const defaultFeaturedImage = 'https://jamesdeal.dev/og';
 	const {
 		author,
+		entity,
 		ogLanguage,
 		siteLanguage,
 		siteShortTitle,
@@ -68,6 +69,7 @@
 		datePublished,
 		lastUpdated,
 		entityMeta,
+		entity,
 		featuredImage,
 		metadescription,
 		siteLanguage,
@@ -99,4 +101,4 @@
 </svelte:head>
 <Twitter {...twitterProps} />
 <OpenGraph {...openGraphProps} />
-<!--<SchemaOrg {...schemaOrgProps} />-->
+<SchemaOrg {...schemaOrgProps} />

@@ -7,9 +7,9 @@ import NotoSans from '$lib/NotoSans-Regular.ttf';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ url }) => {
-	const message = url.searchParams.get('message') ?? undefined,
-		width = url.searchParams.has('width') ? Number(url.searchParams.get('width')) : 1200,
-		height = url.searchParams.has('height') ? Number(url.searchParams.get('height')) : 630;
+	const message = url.searchParams.get('msg') ?? undefined,
+		width = url.searchParams.has('w') ? Number(url.searchParams.get('w')) : 1200,
+		height = url.searchParams.has('h') ? Number(url.searchParams.get('h')) : 630;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const result = (Card as any).render({ message, width, height });
 	const element = toReactNode(`${result.html}<style>${result.css.code}</style>`);

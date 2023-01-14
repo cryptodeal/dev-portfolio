@@ -19,7 +19,7 @@
 		isSigVisible.set(false);
 	});
 
-	const featuredImageSrc = 'https://www.jamesdeal.dev/og';
+	const featuredImageSrc = 'https://www.jamesdeal.dev/og?w=672&h=448';
 	const { author, siteUrl } = website;
 	let title = 'Home';
 	const breadcrumbs = [
@@ -34,20 +34,20 @@
 	const featuredImage = {
 		url: featuredImageSrc,
 		alt: featuredImageAlt,
-		width: 1200,
-		height: 630,
+		width: 672,
+		height: 448,
 		caption: 'Home page'
 	};
 	const ogImage = {
-		url: featuredImageSrc,
+		url: 'https://www.jamesdeal.dev/og?w=1200&h=627',
 		alt: featuredImageAlt
 	};
 	const ogSquareImage = {
-		url: featuredImageSrc,
+		url: 'https://www.jamesdeal.dev/og?w=400&h=400',
 		alt: featuredImageAlt
 	};
 	const twitterImage = {
-		url: featuredImageSrc,
+		url: 'https://www.jamesdeal.dev/og?w=800&h=418',
 		alt: featuredImageAlt
 	};
 	const entityMeta = {

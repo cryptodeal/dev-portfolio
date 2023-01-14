@@ -5,7 +5,6 @@ export const load: PageLoad = async ({ params, url }) => {
 	const { pathname } = url;
 
 	const postPromise = import(`../../../content/blog/${slug}/index.md`);
-	console.log(pathname);
 	const pathSplit = pathname.split('/');
 	const imageDataPromise = import(
 		`../../../lib/generated/posts/${pathSplit[pathSplit.length - 1]}.ts`
@@ -33,6 +32,7 @@ export const load: PageLoad = async ({ params, url }) => {
 		featuredImageAlt,
 		ogImage,
 		ogSquareImage,
+		readingTime,
 		postTitle,
 		seoMetaDescription,
 		twitterImage
@@ -45,6 +45,7 @@ export const load: PageLoad = async ({ params, url }) => {
 			featuredImageAlt,
 			ogImage,
 			ogSquareImage,
+			readingTime,
 			postTitle,
 			seoMetaDescription,
 			twitterImage,

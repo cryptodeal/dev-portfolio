@@ -13,6 +13,7 @@
 		featuredImageAlt: any;
 		lastUpdated: string;
 		ogImage: any;
+		readingTime: { text: string; minutes: number; time: number; words: number };
 		ogSquareImage: any;
 		postTitle: any;
 		seoMetaDescription: any;
@@ -26,10 +27,12 @@
 		featuredImageAlt,
 		lastUpdated,
 		postTitle: title,
+		readingTime,
 		seoMetaDescription: metadescription,
 		slug
 	} = <PostData>post;
 	const { ogImage, ogSquareImage, src: featuredImage, twitterImage } = imageData;
+	const timeToRead = Math.ceil(readingTime.minutes);
 
 	const breadcrumbs = [
 		{
@@ -76,6 +79,7 @@
 	{datePublished}
 	{lastUpdated}
 	{metadescription}
+	{timeToRead}
 	featuredImage={featuredImageObject}
 	ogImage={ogImageObject}
 	ogSquareImage={ogSquareImageObject}

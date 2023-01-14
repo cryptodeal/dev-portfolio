@@ -1,0 +1,12 @@
+diff --git a/index.js b/index.js
+index ba3937e2abcb5b5c40ce469a64d4c0bb9edb73b0..1bafeea2eed49d627746a38d7ea307a9dbf1ecaa 100644
+--- a/index.js
++++ b/index.js
+@@ -17,6 +17,6 @@ export default function readingTime({
+       text += node.value;
+     });
+ 
+-    file.data[attribute] = getReadingTime(text);
++    file.data.fm[attribute] = getReadingTime(text);
+   };
+ }
