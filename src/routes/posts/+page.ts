@@ -4,6 +4,7 @@ type PostMetadata = {
 	datePublished: Date;
 	lastUpdated: Date;
 	postTitle: string;
+	readingTime: { text: string; minutes: number; time: number; words: number };
 	seoMetaDescription: string;
 };
 
@@ -16,8 +17,8 @@ export const load: PageLoad = async () => {
 			Object.keys(mdModules).map(async (path) => {
 				const slug = <string>path.split('/').at(-2);
 				const { metadata } = await mdModules[path]();
-				const { datePublished, lastUpdated, postTitle, seoMetaDescription } = metadata;
-				return { datePublished, lastUpdated, postTitle, seoMetaDescription, slug };
+				const { datePublished, lastUpdated, postTitle, seoMetaDescription, readingTime } = metadata;
+				return { datePublished, lastUpdated, postTitle, seoMetaDescription, slug, readingTime };
 			})
 		)
 	).filter((p) => p.datePublished);
