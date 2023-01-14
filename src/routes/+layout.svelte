@@ -1,8 +1,10 @@
 <script lang="ts">
 	import '../app.css';
+	import website from '$lib/_site';
 	import { onMount } from 'svelte';
 	import Twitter from '~icons/akar-icons/twitter-fill';
 	import Github from '~icons/akar-icons/github-fill';
+	import Mail from '~icons/akar-icons/envelope';
 	// import { webVitals } from '$lib/webvitals';
 	import { afterNavigate } from '$app/navigation';
 	import { themeChange } from 'theme-change';
@@ -96,7 +98,7 @@
 			</div>
 			<div class="grid-flow-col justify-self-center gap-4 md:place-self-center md:justify-self-end">
 				<a
-					href="https://twitter.com/jamespdeal"
+					href="https://twitter.com/{website.twitterUsername}"
 					aria-label="Twitter"
 					rel="nofollow noopener noreferrer"
 					target="_blank"
@@ -104,12 +106,20 @@
 					<Twitter class="w-6 h-6 fill-current" />
 				</a>
 				<a
-					href="https://github.com/cryptodeal"
+					href="https://github.com/{website.githubPage}"
 					rel="nofollow noopener noreferrer"
 					aria-label="Github"
 					target="_blank"
 				>
 					<Github class="w-6 h-6 fill-current" />
+				</a>
+				<a
+					href="mailto:{website.contactEmail}"
+					rel="nofollow noopener noreferrer"
+					aria-label="Email"
+					target="_blank"
+				>
+					<Mail class="w-6 h-6 fill-current" />
 				</a>
 			</div>
 		</footer>

@@ -9,8 +9,8 @@ specifiers:
   '@iconify/json': ^2.2.6
   '@playwright/test': ^1.29.2
   '@resvg/resvg-js': ^2.2.0
-  '@sveltejs/adapter-vercel': ^1.0.2
-  '@sveltejs/kit': ^1.1.0
+  '@sveltejs/adapter-vercel': ^1.0.3
+  '@sveltejs/kit': ^1.1.1
   '@svgdotjs/svg.js': ^3.1.2
   '@tailwindcss/typography': ^0.5.9
   '@types/color': ^3.0.3
@@ -57,8 +57,8 @@ devDependencies:
   '@iconify/json': 2.2.6
   '@playwright/test': 1.29.2
   '@resvg/resvg-js': 2.2.0
-  '@sveltejs/adapter-vercel': 1.0.2_@sveltejs+kit@1.1.0
-  '@sveltejs/kit': 1.1.0_svelte@3.55.1+vite@4.0.4
+  '@sveltejs/adapter-vercel': 1.0.3_@sveltejs+kit@1.1.1
+  '@sveltejs/kit': 1.1.1_svelte@3.55.1+vite@4.0.4
   '@svgdotjs/svg.js': 3.1.2
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
   '@types/color': 3.0.3
@@ -603,12 +603,12 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /@sveltejs/adapter-vercel/1.0.2_@sveltejs+kit@1.1.0:
-    resolution: {integrity: sha512-Ms2cTlqpA8Rf6Pl8GuqC6bLoMdA30W688+wV8i6DcHlLO3Z9NBEZET2jF+tEmRF1jrxxAWEDngdQBfs25eOBxw==}
+  /@sveltejs/adapter-vercel/1.0.3_@sveltejs+kit@1.1.1:
+    resolution: {integrity: sha512-eACBPwpJIPZeh2R8kiKiwUNOpvLK5s1+zx9assD/yq+Hb/t3wDDVjsURVL/Wy1PLndyWeoNrx7QWXhI95eGJug==}
     peerDependencies:
       '@sveltejs/kit': ^1.0.0
     dependencies:
-      '@sveltejs/kit': 1.1.0_svelte@3.55.1+vite@4.0.4
+      '@sveltejs/kit': 1.1.1_svelte@3.55.1+vite@4.0.4
       '@vercel/nft': 0.22.6
       esbuild: 0.16.17
     transitivePeerDependencies:
@@ -616,8 +616,8 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.1.0_svelte@3.55.1+vite@4.0.4:
-    resolution: {integrity: sha512-SSAOaEpiBtR7l4Y/jN+AGHonpZUQ2tcl4yhE7S+rqSJA8iw8dxiWPVpNe7JI3N70hXVylezTj9I6P3cykq8a1Q==}
+  /@sveltejs/kit/1.1.1_svelte@3.55.1+vite@4.0.4:
+    resolution: {integrity: sha512-5hZef6yTqiLm8fLMFD78udJI3pG9ptSndg3NNmDqxv5fS9KFABkASQwnWB25Pf1HkPNqvL+x4Tl8kyW1N8thKQ==}
     engines: {node: ^16.14 || >=18}
     hasBin: true
     requiresBuild: true
