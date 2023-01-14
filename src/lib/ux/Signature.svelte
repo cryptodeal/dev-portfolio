@@ -15,7 +15,7 @@
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		height="100%"
-		class="p-1"
+		class="py-1 px-1"
 		version="1.0"
 		viewBox="0 0 110 65"
 		preserveAspectRatio="xMidYMid meet"
