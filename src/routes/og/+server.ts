@@ -8,8 +8,8 @@ import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ url }) => {
 	const message = url.searchParams.get('message') ?? undefined,
-		width = url.searchParams.get('width') ?? undefined,
-		height = url.searchParams.get('height') ?? undefined;
+		width = url.searchParams.has('width') ? Number(url.searchParams.get('width')) : 1200,
+		height = url.searchParams.has('height') ? Number(url.searchParams.get('height')) : 630;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const result = (Card as any).render({ message, width, height });
 	const element = toReactNode(`${result.html}<style>${result.css.code}</style>`);
@@ -22,14 +22,14 @@ export const GET: RequestHandler = async ({ url }) => {
 				style: 'normal'
 			}
 		],
-		height: Number(height),
-		width: Number(width)
+		height,
+		width
 	});
 
 	const resvg = new Resvg(svg, {
 		fitTo: {
 			mode: 'width',
-			value: Number(width)
+			value: width
 		}
 	});
 
