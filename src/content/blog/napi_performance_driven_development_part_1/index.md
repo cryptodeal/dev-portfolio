@@ -16,15 +16,21 @@ tags: ''
   import ExternalLink from '$lib/ux/blog/ExternalLink.svelte';
 </script>
 
-## Background
-
-With the relatively recent release of the <ExternalLink ariaLabel="Learn more about Bun.sh Javascript runtime." href="https://bun.sh">Bun Javascript runtime</ExternalLink>, I'd been inspired to start working on a new Javascript Machine Learning library targeting Bun (read: a viable alternative to Tensorflow.js). Taking a page out of Jarred Sumner's book, I naïvely decided to write the library from scratch in Zig and started hacking away. Now this wasn't an inherently a bad idea, but as a self taught developer, I had definitely bitten off a bit more than I could chew.
+With the relatively recent release of the <ExternalLink ariaLabel="Learn more about Bun.sh Javascript runtime." href="https://bun.sh">Bun</ExternalLink> Javascript runtime, I'd been inspired to start working on a new Javascript Machine Learning library targeting Bun (read: a viable alternative to Tensorflow.js). Taking a page out of Jarred Sumner's book, I naïvely decided to write the library from scratch in Zig and started hacking away. Now this wasn't an inherently a bad idea, but as a self taught developer, I had definitely bitten off a bit more than I could chew.
 
 Fortunately, I discovered <ExternalLink ariaLabel="Learn more about shumai, a fast, network-connected, differentiable tensor library for TypeScript (and JavaScript)." href="https://github.com/facebookresearch/shumai">shumai</ExternalLink>, a fast, network-connected, differentiable tensor library for TypeScript/Javascript, which was in its infancy at the time, and was able to connect with <ExternalLink ariaLabel="@bwasti Github profile." href="https://github.com/bwasti">@bwasti</ExternalLink> and <ExternalLink ariaLabel="@jacobkahn Github profile." href="https://github.com/jacobkahn">@jacobkahn</ExternalLink> to help contribute to the project.
 
 Fast forward a few months and shumai is more fully featured/production-ready (at least, to the same extent that <ExternalLink ariaLabel="Learn more about Bun.sh Javascript runtime." href="https://bun.sh">Bun</ExternalLink> is production ready), but currently only supports Bun as the present implementation relies on Bun's Foreign Function Interface (FFI) to call into shumai's native bindings.
 
-While Bun's FFI API is incredibly low overhead, we'll still want to profile the code to look for areas where we can optimize the logic. Using Bun's `startSamplingProfiler` (exported by `bun:jsc`), it's incredibly simple to profile a simple loop to look for any performance issues:
+Check out the current implementation of shumai <ExternalLink ariaLabel="Check out the shumai codebase." href="https://github.com/facebookresearch/shumai">here</ExternalLink>.
+
+Given our longer term goal of adding support for all popular Javascript runtimes (namely, Node.js and Deno) to shumai, we set our sights on implementing shumai bindings via Node-API, which is supported by Node.js, Bun, and Deno. This is the first in a series of posts on our journey to implement shumai bindings via Node-API; we'll detail our approach to performance driven development of cross runtime Node-API native addons and attempt to provide some, generally speaking, "best practices" for optimizing the execution time and memory usage Node-API native addons.
+
+## Identifying Areas to Optimize
+
+While Bun's FFI API is incredibly low overhead, we'll still want to profile the code to look for low-hanging fruits in terms of areas where we can optimize the logic. This will give us a good idea of where we can best leverage Node-API to improve performance.
+
+Using Bun's `startSamplingProfiler` (exported by `bun:jsc`), it's incredibly simple to profile a simple loop to look for any performance issues:
 
 ```js
 // bun run toArrayBuffer/index.ts
@@ -65,11 +71,13 @@ Top functions as <numSamples  'functionName#hash:sourceID'>
 
 Notably, calls to the `toArrayBuffer` method exported by Bun's `bun:ffi` module seems potentially avoidable if we were to leverage Node-API (NAPI). This is consistent with conversations with Jarred Sumner on Bun's Discord with regards to optimizing performance of Bun's FFI/NAPI implementations; <ExternalLink ariaLabel="read the discord convo RE FFI/NAPI performance" href="https://ptb.discord.com/channels/876711213126520882/1004133980272078938/1055064340501364756">per Jarred</ExternalLink>, "`toArrayBuffer()` is a cycle through JS & native... You should use NAPI for that."
 
-Given the above and our longer term goal of adding support for all popular Javascript runtimes (namely, Node.js and Deno) to shumai, we set our sights on implementing shumai bindings via Node-API, which is supported by Node.js, Bun, and Deno. This is the first in a series of posts on our journey to implement shumai bindings via Node-API; we'll detail our approach to performance driven development of cross runtime Node-API native addons and attempt to provide some, generally speaking, "best practices" for optimizing the execution time and memory usage Node-API native addons.
+Given the above, we'll likely find the largest performance gains will be realized if we can leverage Node-API when initializing a new Tensor from an existing Javascript TypedArray and when returning a Tensor's underlying buffer as a Javascript TypedArray (both rely on calls to `toArrayBuffer` in the current implementation).
 
 ## "Wrapping" Native Objects for Javascript
 
 N.B. Given that shumai's backend is built with <ExternalLink ariaLabel="Learn more about Flashlight, a fast, flexible machine learning library written entirely in C++ from the Facebook AI Research and the creators of Torch, TensorFlow, Eigen and Deep Speech." href="https://github.com/flashlight/flashlight">Flashlight</ExternalLink>, which is written in C++, we'll be leveraging the <ExternalLink ariaLabel="Check out the node-addon-api docs." href="https://github.com/nodejs/node-addon-api">node-addon-api</ExternalLink> module to write our Node-API native addons. Additionally, given that building shumai's FFI bindings is done via CMake, we'll be employing <ExternalLink ariaLabel="Check out the Cmake.js repository." href="https://github.com/cmake-js/cmake-js">Cmake.js</ExternalLink> to build the Node-API native addons.
+
+## TODO: Happy with the article through here (mostly); needs editing below
 
 If you're anything like me, you'll briefly research how to wrap a Native Object using NAPI and quickly assume that best practices would dictate the usage of `Napi::ObjectWrap` to expose a native object that contains a field that will hold the reference to the native object we're attempting to expose to Javascript; something along these lines:
 
@@ -93,6 +101,10 @@ While this design works, it's overkill for our use case given we ultimately only
 ```
 
 ## TODO: ADD BENCHMARKING/GRAPHS/CHARTS
+
+## Future Areas to Explore
+
+At least in Bun runtime, it's feasible to use a hybrid approach where Node-API and Bun's FFI can be used in tandem to optimize performance. For example, we could use Bun's FFI to initialize a new Tensor and return the underlying data backing the array as a Javascript TypedArray, while leveraging Bun FFI for Tensor operations. Such an approach allows us to escape the bottlenecks of `toArrayBuffer` while simulataneously getting the performance benefits provided by Bun FFI "doing as much as possible inline directly." (<ExternalLink ariaLabel="Jarred Sumner discussion of FFI performance in Discord" href="https://ptb.discord.com/channels/876711213126520882/1004133980272078938/1055064571955650630">source: Jarred Sumner</ExternalLink>)
 
 ### Shoutouts
 

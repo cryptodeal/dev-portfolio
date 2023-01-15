@@ -3,7 +3,7 @@
 	import ShareTwitter from '$lib/ux/socials/ShareTwitter.svelte';
 	import type { PageData } from './$types';
 	import SEO from '$lib/seo/index.svelte';
-
+	import website from '$lib/_site';
 	export let data: PageData;
 	const { post, page, imageData } = data;
 
@@ -102,9 +102,11 @@
 
 <div class="mx-auto prose max-w-4xl px-4 sm:px-6 lg:px-8 lg:max-w-9/12 2xl:prose-lg">
 	<BannerImage {imageData} />
-
-	<h1 class="mb-2">{title}</h1>
-	<h4>By: James Deal</h4>
+	<h1>{title}</h1>
+	<div class="not-prose">
+		<p class="font-semibold text-xl">By: {website.author}</p>
+		<p class="font-light text-sm">Est. {readingTime.text}</p>
+	</div>
 	<svelte:component this={page} />
 </div>
 

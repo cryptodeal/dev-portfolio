@@ -84,7 +84,7 @@ const content = {
 			dates: 'OCT 2018 - DEC 2018, REMOTE',
 			info: [
 				[
-					'Contracted to write official Node.Js',
+					'Contracted to write official Node.js',
 					['API wrapper', 'https://github.com/coss-exchange/trading-api-wrapper-node-js']
 				],
 				`Worked with COSS's backend head dev to flesh API requirements`,

@@ -10,6 +10,7 @@
 	import BulletedList from '$lib/ux/BulletedList.svelte';
 	import Pill from '$lib/ux/Pill.svelte';
 	import website from '$lib/_site';
+	import ExternalLink from '$lib/ux/blog/ExternalLink.svelte';
 
 	const isSigVisible = <Writable<boolean>>getContext('isSigVisible');
 	onMount(() => {
@@ -86,7 +87,7 @@
 
 <div class="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
 	<div
-		class="card h-fit md:max-w-400px justify-self-center md:justify-self-end bg-accent text-accent-content"
+		class="card h-fit md:max-w-[800px] justify-self-center md:justify-self-end bg-accent text-accent-content"
 	>
 		<div class="card-body">
 			<h2 class="card-title">{titles.edu}</h2>
@@ -97,7 +98,7 @@
 	</div>
 
 	<div
-		class="card h-fit md:max-w-400px justify-self-center md:justify-self-start bg-accent text-accent-content"
+		class="card h-fit md:max-w-[800px] justify-self-center md:justify-self-start bg-accent text-accent-content"
 	>
 		<div class="card-body">
 			<h2 class="card-title">Skills</h2>
@@ -110,7 +111,7 @@
 				</div>
 			</div>
 
-			<div class="divider my-1" />
+			<div class="divider before:bg-accent-focus after:bg-accent-focus my-1" />
 
 			<div class="flex flex-col">
 				<Subtitle title={content.skills.db.subtitle} />
@@ -121,7 +122,7 @@
 				</div>
 			</div>
 
-			<div class="divider my-1" />
+			<div class="divider before:bg-accent-focus after:bg-accent-focus my-1" />
 
 			<div class="flex flex-col">
 				<Subtitle title={content.skills.libs.subtitle} />
@@ -132,7 +133,7 @@
 				</div>
 			</div>
 
-			<div class="divider my-1" />
+			<div class="divider before:bg-accent-focus after:bg-accent-focus my-1" />
 
 			<div class="flex flex-col">
 				<Subtitle title={content.skills.graphics.subtitle} />
@@ -150,7 +151,7 @@
 	</div>
 
 	<div
-		class="card h-fit md:max-w-400px justify-self-center md:justify-self-end bg-accent text-accent-content"
+		class="card h-fit md:max-w-[800px] justify-self-center md:justify-self-end bg-accent text-accent-content"
 	>
 		<div class="card-body">
 			<h2 class="card-title">Experience</h2>
@@ -164,7 +165,7 @@
 				<BulletedList bulletItems={content.exp.uw.info} />
 			</div>
 
-			<div class="divider my-1" />
+			<div class="divider before:bg-accent-focus after:bg-accent-focus my-1" />
 
 			<div class="flex flex-col">
 				<Subtitle
@@ -176,7 +177,7 @@
 				<BulletedList bulletItems={content.exp.reyReyPSC.info} />
 			</div>
 
-			<div class="divider my-1" />
+			<div class="divider before:bg-accent-focus after:bg-accent-focus my-1" />
 
 			<div class="flex flex-col">
 				<Subtitle
@@ -188,7 +189,7 @@
 				<BulletedList bulletItems={content.exp.coss.info} />
 			</div>
 
-			<div class="divider my-1" />
+			<div class="divider before:bg-accent-focus after:bg-accent-focus my-1" />
 
 			<div class="flex flex-col">
 				<Subtitle
@@ -198,6 +199,64 @@
 				/>
 				<Dates dates={content.exp.reyReyIT.dates} />
 				<BulletedList bulletItems={content.exp.reyReyIT.info} />
+			</div>
+		</div>
+	</div>
+
+	<div
+		class="card h-fit md:max-w-[800px] justify-self-center md:justify-self-start bg-accent text-accent-content"
+	>
+		<div class="card-body">
+			<h2 class="card-title">Building / Projects</h2>
+
+			<div class="flex flex-col">
+				<Subtitle title="shumai" href="https://github.com/facebookresearch/shumai" />
+				<p class="font-extralight">
+					A fast, network-connected, differentiable tensor library for TypeScript (and JavaScript).
+					Built with bun + flashlight for software engineers and researchers alike.
+				</p>
+			</div>
+
+			<div class="divider before:bg-accent-focus after:bg-accent-focus my-1" />
+
+			<div class="flex flex-col">
+				<Subtitle title="gen-napi (WIP)" href="https://github.com/cryptodeal/gen-napi" />
+				<p class="font-extralight">
+					Library that can be used to parse C++ headers and programmatically generate Node-API
+					bindings via node-addon-api.
+				</p>
+			</div>
+
+			<div class="divider before:bg-accent-focus after:bg-accent-focus my-1" />
+
+			<div class="flex flex-col">
+				<Subtitle title="BallerAnalytics.ai" href="https://balleranalytics.ai" />
+				<p class="font-extralight">
+					Building better, faster, AI driven, fan fueled basketball analytics.
+				</p>
+			</div>
+
+			<div class="divider before:bg-accent-focus after:bg-accent-focus my-1" />
+
+			<div class="flex flex-col">
+				<Subtitle title="ML-Crypto" href="https://github.com/cryptodeal/ML-Crypto" />
+				<p class="font-extralight">
+					Demo implementation of using <ExternalLink
+						ariaLabel="Learn more about shumai, a fast, network-connected, differentiable tensor library for TypeScript (and JavaScript)."
+						href="https://github.com/facebookresearch/shumai">shumai</ExternalLink
+					> for NeuroEvolution in attempt to find a profitable trading strategy for Coinbase `ETH-USD`
+					pair over previous 30 days of 15 min candle data.
+				</p>
+			</div>
+
+			<div class="divider before:bg-accent-focus after:bg-accent-focus my-1" />
+
+			<div class="flex flex-col">
+				<Subtitle
+					title="COSS Exchange - Node API"
+					href="https://github.com/coss-exchange/trading-api-wrapper-node-js"
+				/>
+				<p class="font-extralight">Official Node.js API Wrapper for COSS Crypto Exchange.</p>
 			</div>
 		</div>
 	</div>
