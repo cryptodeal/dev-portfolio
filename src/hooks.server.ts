@@ -1,4 +1,4 @@
-import { PUBLIC_DOMAIN, PUBLIC_SENTRY_PROJECT_ID, PUBLIC_SENTRY_KEY } from '$env/static/public';
+import { PUBLIC_DOMAIN, PUBLIC_SENTRY_PROJECT_ID, PUBLIC_SENTRY_KEY, PUBLIC_SENTRY_ORG_ID } from '$env/static/public';
 import type { Handle } from '@sveltejs/kit';
 
 const directives = {
@@ -53,7 +53,7 @@ const directives = {
 	// remove report-to & report-uri if you do not want to use Sentry reporting
 	'report-to': ["'csp-endpoint'"],
 	'report-uri': [
-		`https://sentry.io/api/${PUBLIC_SENTRY_PROJECT_ID}/security/?sentry_key=${PUBLIC_SENTRY_KEY}`
+		`https://o${PUBLIC_SENTRY_ORG_ID}.ingest.sentry.io/api/${PUBLIC_SENTRY_PROJECT_ID}/security/?sentry_key=${PUBLIC_SENTRY_KEY}`
 	]
 };
 
@@ -78,11 +78,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 	response.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
 	response.headers.set(
 		'Expect-CT',
-		`max-age=86400, report-uri="https://sentry.io/api/${PUBLIC_SENTRY_PROJECT_ID}/security/?sentry_key=${PUBLIC_SENTRY_KEY}"`
+		`max-age=86400, report-uri="https://o${PUBLIC_SENTRY_ORG_ID}.ingest.sentry.io/api/${PUBLIC_SENTRY_PROJECT_ID}/security/?sentry_key=${PUBLIC_SENTRY_KEY}"`
 	);
 	response.headers.set(
 		'Report-To',
-		`{group: "csp-endpoint", "max_age": 10886400, "endpoints": [{"url": "https://sentry.io/api/${PUBLIC_SENTRY_PROJECT_ID}/security/?sentry_key=${PUBLIC_SENTRY_KEY}"}]}`
+		`{group: "csp-endpoint", "max_age": 10886400, "endpoints": [{"url": "https://o${PUBLIC_SENTRY_ORG_ID}.ingest.sentry.io/api/${PUBLIC_SENTRY_PROJECT_ID}/security/?sentry_key=${PUBLIC_SENTRY_KEY}"}]}`
 	);
 	return response;
 };
