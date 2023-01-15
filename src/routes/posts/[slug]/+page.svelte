@@ -72,7 +72,7 @@
 </script>
 
 <SEO
-	article={true}
+	article
 	{breadcrumbs}
 	{slug}
 	{title}
