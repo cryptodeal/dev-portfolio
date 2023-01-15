@@ -42,34 +42,32 @@
 	}
 </script>
 
-<div class:loaded class="w-full relative">
-	<div class="w-full relative overflow-hidden">
-		<div style="padding-bottom:{ratio};" class="w-full">
-			<img class="placeholder" class:blur src={placeholder} alt={placeholderAlt} {style} />
-			<picture>
-				{#each sources as source}
-					<source
-						data-sizes={sizes}
-						data-srcset={source.srcset}
-						type={source.type}
-						{width}
-						{height}
-					/>
-				{/each}
-
-				<img
-					src={path}
-					{alt}
-					{style}
+<div class:loaded class="w-full relative mb-16">
+	<div style="padding-bottom:{ratio};" class="w-full">
+		<img class="placeholder" class:blur src={placeholder} alt={placeholderAlt} {style} />
+		<picture>
+			{#each sources as source}
+				<source
+					data-sizes={sizes}
+					data-srcset={source.srcset}
+					type={source.type}
 					{width}
 					{height}
-					on:load={handleLoad}
-					bind:this={imgElement}
-					class="svelte-lazy-image main {classStr}"
-					class:svelte-lazy-image--loaded={loaded}
 				/>
-			</picture>
-		</div>
+			{/each}
+
+			<img
+				src={path}
+				{alt}
+				{style}
+				{width}
+				{height}
+				on:load={handleLoad}
+				bind:this={imgElement}
+				class="svelte-lazy-image main {classStr}"
+				class:svelte-lazy-image--loaded={loaded}
+			/>
+		</picture>
 	</div>
 </div>
 
@@ -79,7 +77,6 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		object-fit: contain;
 		will-change: opacity;
 		width: 100%;
 		height: 100%;

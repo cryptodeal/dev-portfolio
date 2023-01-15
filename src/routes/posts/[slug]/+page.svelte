@@ -53,19 +53,19 @@
 	};
 	const ogImageObject = ogImage
 		? {
-				url: featuredImage,
+				url: ogImage,
 				alt: featuredImageAlt
 		  }
 		: null;
 	const ogSquareImageObject = ogSquareImage
 		? {
-				url: featuredImage,
+				url: ogSquareImage,
 				alt: featuredImageAlt
 		  }
 		: null;
 	const twitterImageObject = twitterImage
 		? {
-				url: featuredImage,
+				url: twitterImage,
 				alt: featuredImageAlt
 		  }
 		: null;
