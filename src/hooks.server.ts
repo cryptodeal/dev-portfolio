@@ -1,4 +1,9 @@
-import { PUBLIC_DOMAIN, PUBLIC_SENTRY_PROJECT_ID, PUBLIC_SENTRY_KEY, PUBLIC_SENTRY_ORG_ID } from '$env/static/public';
+import {
+	PUBLIC_DOMAIN,
+	PUBLIC_SENTRY_PROJECT_ID,
+	PUBLIC_SENTRY_KEY,
+	PUBLIC_SENTRY_ORG_ID
+} from '$env/static/public';
 import type { Handle } from '@sveltejs/kit';
 
 const directives = {
