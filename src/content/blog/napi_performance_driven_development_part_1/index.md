@@ -78,8 +78,6 @@ Given the above, we'll likely find the largest performance gains will be realize
 
 N.B. Given that shumai's backend is built with <ExternalLink ariaLabel="Learn more about Flashlight, a fast, flexible machine learning library written entirely in C++ from the Facebook AI Research and the creators of Torch, TensorFlow, Eigen and Deep Speech." href="https://github.com/flashlight/flashlight">Flashlight</ExternalLink>, which is written in C++, we'll be leveraging the <ExternalLink ariaLabel="Check out the node-addon-api docs." href="https://github.com/nodejs/node-addon-api">node-addon-api</ExternalLink> module to write our Node-API native addons. Additionally, given that building shumai's FFI bindings is done via CMake, we'll be employing <ExternalLink ariaLabel="Check out the Cmake.js repository." href="https://github.com/cmake-js/cmake-js">Cmake.js</ExternalLink> to build the Node-API native addons.
 
-## TODO: Happy with the article through here (mostly); needs editing below
-
 If you're anything like me, you'll briefly research how to wrap a Native Object using NAPI and quickly assume that best practices would dictate the usage of `Napi::ObjectWrap` to expose a native object that contains a field that will hold the reference to the native object we're attempting to expose to Javascript; something along these lines:
 
 ```cpp
@@ -93,12 +91,63 @@ class Tensor : public Napi::ObjectWrap<Tensor> {
 };
 ```
 
-While this design works, it's overkill for our use case given we ultimately only need to expose a pointer to the native `fl::Tensor` to Javascript and will not be making use of any of the features unique to `Napi::ObjectWrap`; rather, we can simplify the logic by simply returning `Napi::External<fl::Tensor>`directly:
+While this design works, it's overkill for our use case given we ultimately only need to expose a pointer to the native `fl::Tensor` to Javascript and will not be making use of any of the features unique to `Napi::ObjectWrap`; rather, we can simplify the logic by simply returning `Napi::External<fl::Tensor>`, which creates an `Napi::Value` object with arbitrary C++ data, directly:
 
 ```cpp
   auto* tensor = new fl::Tensor(t);
   Napi::External<fl::Tensor> wrapped = Napi::External<fl::Tensor>::New(env, tensor, DeleteTensor);
   return wrapped;
+```
+
+### TODO: ADD BENCHMARKS DEMONSTRATING PERFORMANCE GAINS
+
+### Constructors
+
+Given that the most commons means of initializing a new instance of the `Tensor` class exported by shumai is by passing a Javascript TypedArray, we'll need to implement functions that handle initializing a native `fl::Tensor` object from a Javascript TypedArray. Here's the initial implementation of `_tensorFromFloat64Array`, which takes a `Float64Array` as an argument and returns a reference to the newly initialized `fl::Tensor`:
+
+```cpp
+static Napi::Value _tensorFromFloat64Array(const Napi::CallbackInfo &info)
+{
+  Napi::Env env = info.Env();
+  if (!info[0].IsTypedArray())
+  {
+    Napi::Error::New(env,
+                     "`tensorFromFloat64Array` epects args[0] to be "
+                     "instanceof `Float64Array`")
+        .ThrowAsJavaScriptException();
+    return env.Null();
+  }
+  Napi::TypedArray _tmp_typed_array = info[0].As<Napi::TypedArray>();
+  if (_tmp_typed_array.TypedArrayType() != napi_int8_array)
+  {
+    Napi::Error::New(env,
+                     "`tensorFromFloat64Array` epects args[0] to be "
+                     "instanceof `Float64Array`")
+        .ThrowAsJavaScriptException();
+    return env.Null();
+  }
+  // relevant logic omitted for brevity (see next snippet)...
+}
+```
+
+With an eye for minor optimizations at each step of the process, we'll consider the ultimate usage of this function. Given that `_tensorFromFloat64Array` is only called internally in the Javascript `Tensor` class constructor and that the constructor accepts arguments of types other than `TypedArray`, we'll need to check the types Javascript `Tensor` class constructor; this means the type checks in the `_tensorFromFloat64Array` are in fact, redudant, and can be removed. The resulting logic is cleaner and runs slightly faster after removing the duplicated type checks:
+
+```cpp
+static Napi::Value _tensorFromFloat64Array(const Napi::CallbackInfo &info)
+{
+  Napi::Env env = info.Env();
+  Napi::TypedArray _tmp_typed_array = info[0].As<Napi::TypedArray>();
+  int64_t length = static_cast<int64_t>(_tmp_typed_array.ElementLength());
+  double *ptr =
+      _tmp_typed_array.As<Napi::TypedArrayOf<double>>().Data();
+  auto *t = new fl::Tensor(
+      fl::Tensor::fromBuffer({length}, ptr, fl::MemoryLocation::Host));
+  auto _out_bytes_used = static_cast<int64_t>(t->bytes());
+  g_bytes_used += _out_bytes_used;
+  Napi::MemoryManagement::AdjustExternalMemory(env, _out_bytes_used);
+  Napi::External<fl::Tensor> wrapped = ExternalizeTensor(env, t);
+  return wrapped;
+}
 ```
 
 ## TODO: ADD BENCHMARKING/GRAPHS/CHARTS

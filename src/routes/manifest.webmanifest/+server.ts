@@ -17,7 +17,6 @@ export const GET: RequestHandler = function get({ setHeaders }) {
 		icons: [
 			{ src: '/icon-192.png', type: 'image/png', sizes: '192x192', purpose: 'any maskable' },
 			{ src: '/icon-512.png', type: 'image/png', sizes: '512x512' }
-
 		]
 	};
 
