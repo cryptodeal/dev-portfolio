@@ -17,6 +17,9 @@ function rawFonts(ext: string[]) {
 }
 
 const config: UserConfig = {
+  define: {
+		'process.env.VITE_BUILD_TIME': JSON.stringify(new Date().toISOString()),
+	},
 	plugins: [imagetools(), Icons({ compiler: 'svelte' }), sveltekit(), rawFonts(['.ttf'])],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
