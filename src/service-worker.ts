@@ -4,51 +4,60 @@ import { build, files, version } from '$service-worker';
 declare const self: ServiceWorkerGlobalScope;
 
 const worker = self;
-const CACHE_NAME = `static-cache-${version}`;
+// create unique cache name for deployment
+const CACHE_NAME = `cache-${version}`;
 
-const to_cache = build.concat(files);
+const to_cache = [...build, ...files]; // build files and static files to cache
 
 worker.addEventListener('install', (event) => {
-	console.log('[ServiceWorker] Install');
+	// Create a new cache and add all files to it
+	async function addFilesToCache() {
+		const cache = await caches.open(CACHE_NAME);
+		await cache.addAll(to_cache);
+	}
 
-	event.waitUntil(
-		caches.open(CACHE_NAME).then((cache) => {
-			console.log('[ServiceWorker] Pre-caching offline page');
-			return cache.addAll(to_cache).then(() => {
-				worker.skipWaiting();
-			});
-		})
-	);
+	event.waitUntil(addFilesToCache());
 });
 
 worker.addEventListener('activate', (event) => {
-	console.log('[ServiceWorker] Activate');
 	// Remove previous cached data from disk
-	(event as ExtendableEvent).waitUntil(
-		caches.keys().then(async (keys) =>
-			Promise.all(
-				keys.map((key) => {
-					if (key !== CACHE_NAME) {
-						console.log('[ServiceWorker] Removing old cache', key);
-						return caches.delete(key);
-					}
-				})
-			)
-		)
-	);
-	worker.clients.claim();
+	async function deleteOldCaches() {
+		for (const key of await caches.keys()) {
+			if (key !== CACHE_NAME) await caches.delete(key);
+		}
+	}
+
+	event.waitUntil(deleteOldCaches());
 });
 
-self.addEventListener('fetch', (event: any) => {
-	console.log('[ServiceWorker] Fetch', event.request.url);
-	if (event.request.mode !== 'navigate') {
+self.addEventListener('fetch', async (event) => {
+	if (event.request.method !== 'GET' || event.request.mode !== 'navigate') {
 		return;
 	}
-	event.respondWith(
-		fetch(event.request).catch(() => {
-			return caches.open(CACHE_NAME).then((cache) => {
-				return cache.match('index.html');
-			});
-		})
-	);
+
+	async function respond() {
+		const url = new URL(event.request.url);
+		const cache = await caches.open(CACHE_NAME);
+
+		// `build`/`files` can always be served from the cache
+		if (to_cache.includes(url.pathname)) {
+			console.log('serving cached file');
+			return cache.match(event.request);
+		}
+
+		// for everything else, try the network first, but
+		// fall back to the cache if we're offline
+		try {
+			const response = await fetch(event.request);
+			if (response.status === 200) {
+				cache.put(event.request, response.clone());
+			}
+			console.log('serving live file');
+			return response;
+		} catch {
+			return cache.match(event.request);
+		}
+	}
+
+	event.respondWith(respond());
 });
